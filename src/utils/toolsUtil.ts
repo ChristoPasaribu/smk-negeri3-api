@@ -20,3 +20,12 @@ export const ensureDirectoryExistence = async (
 export const getTimestamp = (): string => {
   return moment().format("YYYY-MM-DD_HH-mm-ss");
 };
+
+/**
+ * Normalize file path dari multer agar bisa diakses browser.
+ * Windows menyimpan path dengan backslash: uploads\folder\file.png
+ * Browser butuh forward slash:             uploads/folder/file.png
+ */
+export const normalizePath = (filePath: string): string => {
+  return filePath.replace(/\\/g, '/');
+};

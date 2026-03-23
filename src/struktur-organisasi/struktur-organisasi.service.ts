@@ -9,7 +9,8 @@ export class StrukturOrganisasiService {
 
   async findOne(id: string) {
     const data = await StrukturOrganisasiModel.findByPk(id);
-    if (!data) throw new NotFoundException('Data struktur organisasi tidak ditemukan');
+    if (!data)
+      throw new NotFoundException('Data struktur organisasi tidak ditemukan');
     return data;
   }
 

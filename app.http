@@ -117,7 +117,7 @@ Content-Type: application/json
 ###
 
 ### GET - Ambil data struktur organisasi by ID
-GET {{baseUrl}}/struktur-organisasi/isi-id-disini
+GET {{baseUrl}}/struktur-organisasi/0948ca74-e307-4bf5-a429-32a23fe7c89e
 Content-Type: application/json
 
 ###
@@ -128,9 +128,9 @@ Content-Type: multipart/form-data; boundary=----FormBoundary
 
 ------FormBoundary
 Content-Disposition: form-data; name="gambar"; filename="struktur.png"
-Content-Type: image/png
+Content-Type: image/jpg
 
-< C:/path/to/gambar-struktur.png
+< images.jpg
 
 ------FormBoundary--
 

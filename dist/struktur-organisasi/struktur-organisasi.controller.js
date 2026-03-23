@@ -18,6 +18,7 @@ const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const path_1 = require("path");
 const struktur_organisasi_service_1 = require("./struktur-organisasi.service");
+const toolsUtil_1 = require("../utils/toolsUtil");
 const multerOptions = {
     storage: (0, multer_1.diskStorage)({
         destination: './uploads/struktur-organisasi',
@@ -47,12 +48,12 @@ let StrukturOrganisasiController = class StrukturOrganisasiController {
     create(file) {
         if (!file)
             throw new common_1.BadRequestException('File gambar wajib diupload');
-        return this.service.create(file.path);
+        return this.service.create((0, toolsUtil_1.normalizePath)(file.path));
     }
     update(id, file) {
         if (!file)
             throw new common_1.BadRequestException('File gambar wajib diupload');
-        return this.service.update(id, file.path);
+        return this.service.update(id, (0, toolsUtil_1.normalizePath)(file.path));
     }
     remove(id) {
         return this.service.remove(id);

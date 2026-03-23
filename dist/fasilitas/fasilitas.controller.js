@@ -19,6 +19,7 @@ const multer_1 = require("multer");
 const path_1 = require("path");
 const fasilitas_service_1 = require("./fasilitas.service");
 const fasilitas_dto_1 = require("./fasilitas.dto");
+const toolsUtil_1 = require("../utils/toolsUtil");
 const multerOptions = {
     storage: (0, multer_1.diskStorage)({
         destination: './uploads/fasilitas',
@@ -46,10 +47,10 @@ let FasilitasController = class FasilitasController {
         return this.service.findOne(id);
     }
     create(dto, file) {
-        return this.service.create(dto, file?.path);
+        return this.service.create(dto, file ? (0, toolsUtil_1.normalizePath)(file.path) : undefined);
     }
     update(id, dto, file) {
-        return this.service.update(id, dto, file?.path);
+        return this.service.update(id, dto, file ? (0, toolsUtil_1.normalizePath)(file.path) : undefined);
     }
     remove(id) {
         return this.service.remove(id);

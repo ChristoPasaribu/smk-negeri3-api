@@ -6,6 +6,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { StrukturOrganisasiService } from './struktur-organisasi.service';
+import { normalizePath } from '../utils/toolsUtil';
 
 const multerOptions = {
   storage: diskStorage({
@@ -41,14 +42,14 @@ export class StrukturOrganisasiController {
   @UseInterceptors(FileInterceptor('gambar', multerOptions))
   create(@UploadedFile() file: Express.Multer.File) {
     if (!file) throw new BadRequestException('File gambar wajib diupload');
-    return this.service.create(file.path);
+    return this.service.create(normalizePath(file.path)); // ✅ fix backslash
   }
 
   @Put(':id')
   @UseInterceptors(FileInterceptor('gambar', multerOptions))
   update(@Param('id') id: string, @UploadedFile() file: Express.Multer.File) {
     if (!file) throw new BadRequestException('File gambar wajib diupload');
-    return this.service.update(id, file.path);
+    return this.service.update(id, normalizePath(file.path)); // ✅ fix backslash
   }
 
   @Delete(':id')
